@@ -11,14 +11,27 @@ public class DatabaseHandler {
     private static final String HOST = "localhost";
     private static final String PORT = "3306";
     private static final String USER = "root";
-    private static final String PASSWORD = "admin"; // Change this to your MySQL password while cloning from github
+    private static final String PASSWORD = "admin";
     private static final String DATABASE_NAME = "student_db";
-    private static final String URL = "jdbc:mysql://" + HOST + ":" + PORT;
-    private static final String DB_URL = URL + "/" + DATABASE_NAME;
+
+    // URL for initial connection without database
+    private static final String MYSQL_URL = "jdbc:mysql://" + HOST + ":" + PORT;
+    // URL for connection with database
+    private static final String DB_URL = MYSQL_URL + "/" + DATABASE_NAME;
 
     public DatabaseHandler(){
         //Initialize database when create an object of a DatabaseHandler class
-        initializeDatabase();
+
+        try {
+            // Load JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            initializeDatabase();
+        } catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null,
+                    "MySQL JDBC Driver not found: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
 
     }
 
@@ -53,18 +66,17 @@ public class DatabaseHandler {
         Connection conn = null;
         Statement stmt = null;
         try {
-            // Create database if not exists in your local machine
-            conn = getConnection();
+            // Create database if not exists
+            conn = DriverManager.getConnection(MYSQL_URL, USER, PASSWORD);
             stmt = conn.createStatement();
             stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + DATABASE_NAME);
 
             // Close previous statement, but reuse the connection for the next operation
             stmt.close();
 
-
-
             // Reconnect to the newly created database and create table if not exists
-            conn = getConnection();
+            String dbUrlWithDatabase = MYSQL_URL + "/" + DATABASE_NAME; // Corrected connection URL
+            conn = DriverManager.getConnection(dbUrlWithDatabase, USER, PASSWORD);
             stmt = conn.createStatement();
             String createTableSQL = "CREATE TABLE IF NOT EXISTS students (" +
                     "roll_no INT PRIMARY KEY," +
@@ -74,23 +86,25 @@ public class DatabaseHandler {
                     "email VARCHAR(100) NOT NULL)";
             stmt.executeUpdate(createTableSQL);
 
-            // If everything went successfully, show a success message
+            // Show a success message
             JOptionPane.showMessageDialog(null, "Database and table creation successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-
         } catch (SQLException e) {
-
             // Show an error message dialog if an exception occurs
             JOptionPane.showMessageDialog(null, "Database initialization failed: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Database initialization failed: " + e.getMessage());
         } finally {
-            // It helps to ensure both the statement and connection are closed to prevent resource leaks
+            // Ensure both the statement and connection are closed to prevent resource leaks
             closeResources(stmt, conn);
         }
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        try {
+            return DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            System.err.println("Connection failed: " + e.getMessage());
+            throw e;
+        }
     }
 
     public void addStudent(Student student) throws SQLException {
@@ -123,18 +137,9 @@ public class DatabaseHandler {
             pstmt.setInt(1, rollNo);
             int rowsAffected = pstmt.executeUpdate();
 
-            // Show success pop-up if student was deleted
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Student deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "No student found with the given roll number!", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
 
-        } catch (SQLException e) {
-            // Show error pop-up
-            JOptionPane.showMessageDialog(null, "Error deleting student: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            throw e;
-        } finally {
+
+        }  finally {
             closeResources(pstmt, conn);
         }
     }
@@ -161,10 +166,6 @@ public class DatabaseHandler {
                 JOptionPane.showMessageDialog(null, "Student not found!", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
             return null;
-        } catch (SQLException e) {
-            // Show error pop-up
-            JOptionPane.showMessageDialog(null, "Error searching for student: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            throw e;
         } finally {
             closeResultSet(rs);
             closeResources(pstmt, conn);
@@ -191,14 +192,7 @@ public class DatabaseHandler {
                 students.add(student);
             }
 
-            // Show success pop-up
-            JOptionPane.showMessageDialog(null, "Students retrieved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-
             return students;
-        } catch (SQLException e) {
-            // Show error pop-up
-            JOptionPane.showMessageDialog(null, "Error retrieving students: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            throw e;
         } finally {
             closeResultSet(rs);
             closeResources(stmt, conn);

@@ -1,7 +1,6 @@
 package com.rishi.Task5.studentmgmt.gui;
 
 import com.rishi.Task5.studentmgmt.dao.DatabaseHandler;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,25 +10,19 @@ public class MainWindow extends JFrame {
     private DatabaseHandler dbHandler;
 
     public MainWindow() {
-        initializeWindow();
-        initializeDatabase();
-        createButtons();
-    }
+        // Initialize database
+        dbHandler = new DatabaseHandler();
 
-    private void initializeWindow() {
+        // Set window properties
         setTitle("Student Management System");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-    }
 
-    private void initializeDatabase() {
-        dbHandler = new DatabaseHandler();
-    }
-
-    private void createButtons() {
-        // Create main panel with grid layout
-        JPanel buttonPanel = createButtonPanel();
+        // Create main panel
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2, 2, 10, 10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Create buttons
         JButton addButton = new JButton("Add Student");
@@ -37,7 +30,7 @@ public class MainWindow extends JFrame {
         JButton searchButton = new JButton("Search Student");
         JButton showAllButton = new JButton("Show All Students");
 
-        // Add action listeners
+        // Add action listener for Add button
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AddStudentDialog dialog = new AddStudentDialog(MainWindow.this, dbHandler);
@@ -45,6 +38,7 @@ public class MainWindow extends JFrame {
             }
         });
 
+        // Add action listener for Delete button
         deleteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DeleteStudentDialog dialog = new DeleteStudentDialog(MainWindow.this, dbHandler);
@@ -52,6 +46,7 @@ public class MainWindow extends JFrame {
             }
         });
 
+        // Add action listener for Search button
         searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SearchStudentDialog dialog = new SearchStudentDialog(MainWindow.this, dbHandler);
@@ -59,6 +54,7 @@ public class MainWindow extends JFrame {
             }
         });
 
+        // Add action listener for Show All button
         showAllButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ShowAllStudentsDialog dialog = new ShowAllStudentsDialog(MainWindow.this, dbHandler);
@@ -76,14 +72,8 @@ public class MainWindow extends JFrame {
         add(buttonPanel);
     }
 
-    private JPanel createButtonPanel() {
-        JPanel panel = new JPanel(new GridLayout(2, 2, 10, 10));
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        return panel;
-    }
-
     public static void main(String[] args) {
-        // Create and show window on Event Dispatch Thread
+        // Create and show window using traditional way
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 MainWindow mainWindow = new MainWindow();
