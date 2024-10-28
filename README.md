@@ -1,69 +1,123 @@
-# CodSoft Internship Project
+# CodSoft Internship - Java Projects
 # Author : Rishi Yadav
+# BTech CSE 3rd - year student
 
-## Overview
-This repository contains four tasks completed as part of my internship at CodSoft. Each task focuses on enhancing my Java programming skills and understanding of software development principles. Below are the descriptions and features of each task.
+This repository contains five tasks completed as part of my internship at CodSoft. Each task is designed to enhance my Java programming skills and understanding of software development principles. Below are descriptions, highlighted features, and output placeholders for each task.
 
 ---
 
 ## Task 1: Number Guessing Game
 
 ### Description
-The Number Guessing Game is a console-based application that challenges the player to guess a randomly generated number within a specified range. The player receives feedback on whether their guess is too high, too low, or correct.
+The Number Guessing Game is a simple console-based application where the player tries to guess a randomly generated number within a specific range. It aims to test and improve logical thinking by providing feedback after each guess. The game ends when the player correctly guesses the number.
 
 ### Features
-- **Random Number Generation**: Generates a random number between 1 and 100.
-- **User Input**: Allows the user to enter their guesses.
-- **Feedback**: Provides hints after each guess, indicating whether the guess is too high or too low.
-- **Score Tracking**: Keeps track of the number of attempts taken by the player to guess the number.
-- **Replay Option**: Offers the option to play again after completing a game.
+- **Random Number Generation**: Generates a random number between 1 and 100 for the player to guess.
+- **User Input**: Accepts guesses from the player through the console.
+- **Feedback Mechanism**: Informs the player if the guess is too high or too low, helping narrow down the answer.
+- **Attempt Tracking**: Keeps count of the attempts the player takes to guess the correct number.
+- **Replay Option**: Allows the player to start a new game after guessing the correct number.
+
+### Output
+![img.png](img.png)
+
 
 ---
 
 ## Task 2: Student Grade Calculator
 
 ### Description
-The Student Grade Calculator is an application designed to input student scores and calculate their final grades based on predefined criteria.
+The Student Grade Calculator is a Java application that accepts a student's scores and calculates their final grade based on predefined criteria. This task emphasizes input validation, calculations, and output display, providing practical experience in handling user inputs and displaying calculated results.
 
 ### Features
-- **Input Fields**: Allows the user to input scores for various subjects.
-- **Grade Calculation**: Automatically calculates final grades based on input scores.
-- **Grade Display**: Shows the calculated grade and feedback based on performance (e.g., Pass/Fail).
-- **Data Validation**: Ensures that all inputs are valid before calculation.
-- **User-Friendly Interface**: Provides a simple and intuitive interface for users.
+- **Subject Score Input**: Accepts scores for multiple subjects from the user.
+- **Automated Grade Calculation**: Computes the final grade based on the entered scores.
+- **Performance Feedback**: Displays grades alongside a Pass/Fail indication based on student performance.
+- **Data Validation**: Ensures that scores are valid (e.g., within acceptable ranges) before proceeding with calculations.
+
+
+### Output
+![img_1.png](img_1.png)
+
 
 ---
 
 ## Task 3: ATM Interface
 
 ### Description
-The ATM Interface simulates a basic banking system where users can perform operations such as checking their balance, withdrawing money, and depositing money.
+The ATM Interface simulates a basic banking application, allowing users to perform typical banking operations like checking balances, withdrawing, and depositing money. This task provided insight into user authentication, input handling, and the implementation of basic banking functions.
 
 ### Features
-- **User Authentication**: Simulates user login with a unique account number.
-- **Balance Inquiry**: Allows users to check their current balance.
-- **Withdrawals**: Enables users to withdraw cash, with limits set on maximum withdrawal amounts.
-- **Deposits**: Allows users to deposit cash into their account.
-- **Transaction History**: Displays a summary of recent transactions performed by the user.
+- **User Login System**: Simulates user authentication using unique account numbers for each session.
+- **Balance Inquiry**: Displays the current account balance for the user.
+- **Cash Withdrawals**: Allows users to withdraw a specified amount, ensuring withdrawal limits and sufficient balance.
+- **Deposits**: Enables users to deposit money into their account.
+
+
+### Output
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+
 
 ---
 
 ## Task 4: Currency Converter
 
 ### Description
-The Currency Converter is an application that converts an amount from one currency to another using real-time exchange rates.
+The Currency Converter application provides a user-friendly interface for converting an amount from one currency to another based on real-time exchange rates. This task involved working with APIs, handling user input, and displaying conversion results.
 
 ### Features
-- **Currency Selection**: Users can choose base and target currencies from a dropdown menu.
-- **Real-Time Exchange Rates**: Fetches live exchange rates for accurate conversions.
-- **Amount Input**: Allows users to input the amount they wish to convert.
-- **Conversion Result**: Displays the converted amount after performing the calculation.
-- **Error Handling**: Provides error messages for invalid inputs or network issues.
+- **Currency Selection**: Allows users to choose the base and target currencies from dropdown lists.
+- **Real-Time Exchange Rates**: Retrieves live exchange rates to perform accurate currency conversions.
+- **Amount Input**: Lets users input the amount they wish to convert.
+- **Conversion Display**: Shows the converted amount after completing the calculation.
+- **Error Handling**: Displays error messages for invalid inputs or network issues.
+
+### Output
+![img_4.png](img_4.png)
+
+
+---
+
+## Task 5: Student Management System
+
+### Description
+The Student Management System is a GUI-based application that helps manage student data, including adding, updating, searching, and deleting student records. It connects to a MySQL database, providing real-world experience in database integration and Java Swing GUI design.
+
+### Features
+- **Student Record Management**: Allows adding, updating, and deleting student information.
+- **Database Connectivity**: Integrates with MySQL to store and retrieve student data.
+- **Search Functionality**: Enables searching for student records by roll number.
+- **User-Friendly GUI**: Built using Java Swing for an intuitive and accessible interface.
+- **Data Validation**: Ensures all inputs meet required criteria before database entry.
+
+### Output
+# MainWindow
+![img_5.png](img_5.png)
+
+# Add Student Window
+![img_6.png](img_6.png)
+
+# Delete Student Window
+![img_7.png](img_7.png)
+
+# Search Student Window
+![img_8.png](img_8.png)
+
+# Show All Students Window
+![img_9.png](img_9.png)
+
 
 ---
 
 ## Conclusion
-These tasks have helped me develop a solid understanding of Java programming, user interface design, and practical software development concepts. I look forward to implementing more complex projects in the future.
+These tasks have been instrumental in developing a strong foundation in Java programming, user interface design, and practical software development concepts. I look forward to applying these skills in more complex projects and further advancing my expertise.
+
+---
 
 ## Acknowledgments
-- Special thanks to CodSoft for this internship opportunity and the chance to work on these exciting projects.
+Special thanks to CodSoft for this internship opportunity and for providing me with meaningful projects that allowed me to deepen my understanding of Java and software development practices.
+
+---
+
+

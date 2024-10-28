@@ -65,7 +65,7 @@ public class AddStudentDialog extends JDialog {
         cancelButton.addActionListener(e -> dispose());
 
         add(panel);
-        setVisible(true);
+
     }
 
     private boolean validateInputs() {

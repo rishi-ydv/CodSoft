@@ -41,7 +41,7 @@ public class SearchStudentDialog extends JDialog {
         cancelButton.addActionListener(e -> dispose());
 
         add(panel);
-        setVisible(true);
+
     }
 
     private void showStudentDetails(Student student) {

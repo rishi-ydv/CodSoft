@@ -42,6 +42,6 @@ public class ShowAllStudentsDialog extends JDialog {
             JOptionPane.showMessageDialog(this, "Error loading students: " + ex.getMessage());
         }
 
-        setVisible(true);
+        //setVisible(true);
     }
 }
